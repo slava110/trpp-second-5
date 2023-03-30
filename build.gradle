@@ -21,21 +21,27 @@ micronaut {
 }
 
 dependencies {
+    implementation 'javax.annotation:javax.annotation-api'
+    implementation 'com.opencsv:opencsv:5.7.1'
+
+    // Lombok
     annotationProcessor 'org.projectlombok:lombok:1.18.18'
     compileOnly 'org.projectlombok:lombok:1.18.18'
-    
-    implementation("io.micronaut:micronaut-runtime")
-    implementation("io.micronaut:micronaut-validation")
-    implementation("io.micronaut:micronaut-http-client")
-    implementation("javax.annotation:javax.annotation-api")
-    implementation("org.apache.logging.log4j:log4j-core:2.12.1")
-    runtimeOnly("org.apache.logging.log4j:log4j-api:2.12.1")
-    runtimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.12.1")
+
+    // Micronaut
+    implementation 'io.micronaut:micronaut-runtime'
+    implementation 'io.micronaut:micronaut-validation'
+    implementation 'io.micronaut:micronaut-http-client'
+
+    // Log4J
+    implementation 'org.apache.logging.log4j:log4j-core:2.12.4'
+    runtimeOnly 'org.apache.logging.log4j:log4j-api:2.20.0'
+    runtimeOnly 'org.apache.logging.log4j:log4j-slf4j-impl:2.20.0'
 }
 
 
 application {
-    mainClass.set("ru.mirea.Application")
+    mainClass.set("ru.mirea.trppsecond5.Application")
 }
 
 java {
@@ -46,14 +52,14 @@ java {
 compileJava {
     options.warnings = true
     options.deprecation = true
-    options.compilerArgs += ["-Xlint:all"]
+    options.compilerArgs += ["-Xlint:all,-processing"]
     options.encoding = 'UTF-8'
 }
 
 compileTestJava {
     options.warnings = true
     options.deprecation = true
-    options.compilerArgs += ["-Xlint:all"]
+    options.compilerArgs += ["-Xlint:all,-processing"]
     options.encoding = 'UTF-8'
 }
 
@@ -64,7 +70,7 @@ javadoc {
 shadowJar {
     archivesBaseName = "${project.name}"
     libsDirName = "${project.name}"
-    classifier('')
+    classifier('Popov')
 }
 
 checkstyle {

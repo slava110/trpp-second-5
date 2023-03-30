@@ -1,9 +1,10 @@
-package ru.mirea.trpp_second_5.controllers;
+package ru.mirea.trppsecond5.controllers;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
+import ru.mirea.trppsecond5.entity.Medicine;
 
 import java.io.InputStreamReader;
 import java.util.List;
@@ -18,7 +19,11 @@ public class MedicineController {
 
     /** Конструктор. */
     public MedicineController() {
-        medicineList = new CsvToBeanBuilder<Medicine>(new InputStreamReader(this.getClass().getResourceAsStream("/MOCK_DATA.csv"))).withType(Medicine.class).build().parse();
+        medicineList = new CsvToBeanBuilder<Medicine>(
+                new InputStreamReader(
+                        getClass().getResourceAsStream("/MOCK_DATA.csv")
+                )
+        ).withType(Medicine.class).build().parse();
     }
 
     /**
